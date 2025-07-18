@@ -171,7 +171,7 @@ func buildFullPath(entries map[int]*sqlDBFileEntry, rid int) string {
 }
 
 func UpdateFullpaths() {
-    fmt.Println("[+] Building full paths for all entries...")
+    fmt.Println("\n[+] Building full paths for all entries...")
 
     // Step 1: Fetch all entries into memory
     files, err := fetchAllFiles()
