@@ -50,10 +50,14 @@ go run MFT2SQL.go -dbFile custom.db -dumpMode 2
 go run MFT2SQL.go -dbFile custom.db -getFileLocation Windows\System32\config\SAM
 ```
 
+** Carve file (SAM file in this case) and store it in custom output: **
+```bash
+go run MFT2SQL.go -carve -fileOffset  28721337472  -fileLength  131004 -dumpFile SAMFile.txt
+```
+
 ## 📜 License
 
 This project is licensed under the [Apache License 2.0](https://raw.githubusercontent.com/MFT2SQL/MFT2SQL/refs/heads/main/LICENSE).  
 See `LICENSE.md` for the full license text and terms of use.
 
-** Carve file (SAM file in this case) and store it in custom output: **
-go run MFT2SQL.go -carve -fileOffset  28721337472  -fileLength  131004 -dumpFile SAMFile.txt
+
