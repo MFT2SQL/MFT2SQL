@@ -22,21 +22,21 @@ This indexes all MFT entries and recursively resolves their full paths. ⏱️ I
 ## 💻 Features & Highlights
 
 - 🔍 Converts raw MFT records into structured SQL records
-- 📂 Reconstructs full file paths via parent-child relationships
+- 📂 Automatically reconstructs full file paths via parent-child relationships
 - 📎 Tracks file size, disk offset, activity status, and folder flags
 - 🧬 Supports direct file carving using metadata from MFT
 - 🗃️ Enables SQL-indexed lookup for flexibility
 
 | **Flag**           | **Description**                                                            |
 |--------------------|----------------------------------------------------------------------------|
+| `-dbFile string`   | SQLite DB name (default `"MFTDB.db"`). Applies to -dumpFile and -getFileLocation |
 | `-carve`           | Carve a file from disk. Requires `-fileOffset` and `-fileLength`.         |
-| `-dbFile string`   | SQLite DB name (default `"MFTDB.db"`).                                    |
-| `-deviceLocation`  | Disk source to scan (default `"\\\\.\\physicaldrive0"`).                  |
-| `-dumpFile string` | Output filename for carved data (default `"output.dump"`).                |
-| `-dumpMode int`    | MFT dump output: `1=screen`, `2=SQL`.                                     |
 | `-fileLength int`  | Length of the file to carve (in bytes).                                   |
 | `-fileOffset int`  | Disk offset to start carving from (in bytes).                             |
-| `-getFileLocation` | Lookup file offset and length by full NTFS path.                          |
+| `-dumpFile string` | Dump MFT to a custom database or file output. Options: `1=screen`, `2=SQL`. |
+| `-deviceLocation string`  | Disk source to scan (default `"\\\\.\\physicaldrive0"`).                  |
+| `-dumpMode int`    | MFT dump output: `1=screen`, `2=SQL`.                                     |
+| `-getFileLocation string` | Lookup file offset and length by full NTFS path.                          |
 | `-help`            | Show help and usage banner.                                                |
 
 ---
