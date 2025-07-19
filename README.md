@@ -55,17 +55,50 @@ Much appreciated! 🧠☕
 
 **Dump MFT to a custom database output file:**
 ```bash
-go run MFT2SQL.go -dbFile custom.db -dumpMode 2
+$ go run MFT2SQL.go -dbFile custom.db -dumpMode 2
+[+] Database is clean and ready to use
+[+] Parsing GPT Header
+[+] Calculating buffer size for DISK with signature 45 46 49 20 50 41 52 54
+  --> Starting at LBA: 2 means a seek offset of: 1024
+  --> With 128 partitions, of size: 128, we need a buffer of: 16384
+[+] Parsing Partition table
+  --> Number of partitions identified: 4
+[+] Determining windows Base partition / NTFS partition
+  --> Found basic partition starting at offset: 290455552
+[+] Parsing NTFS header
+  --> Validated basic partition to be NTFS by comparing oemID
+  --> Using BytesPerSector: 512, SectorsPerCluster: 8
+  --> Master File Table ($MFT) offset found at: 786432, e.g. a total offset of: 3511681024
+  --> $MFT offset - NFTSoffset (as used in the table): 3221225472 or c0000000 in hex
+[+] Parsing Master File Table (this can take a while)
+  --> $DATA attribute of $MFT found at record offset: 256
+  --> Found 13 MFT Blocks
+
+[.] Committed batch of 10000 records. Total inserted: 10000
+..
+[.] Committed batch of 10000 records. Total inserted: 2170000
+[.] Committed batch of 7990 records. Total inserted: 2177990
+  --> Found 2178016 files in the $MFT records[+] Building full paths for all entries...
+[+] Updated 100000 fullpaths...
 ```
+[+] Updated 1700000 fullpaths...
+[+] Fullpaths updated for 1777761 records.
 
 **Fetch location data of a file:**
 ```bash
-go run MFT2SQL.go -dbFile custom.db -getFileLocation Windows\System32\config\SAM
+$ go run MFT2SQL.go -dbFile custom.db -getFileLocation Windows\System32\config\SAM
+[+] Fetching file location info for: Windows\System32\config\SAM
+📄 File: SAM
+Offset: 28721337472
+Length: 131004
+Command: go run MFT2SQL.go -carve -fileOffset  28721337472  -fileLength  131004
 ```
 
 **Carve file (SAM file in this case) and store it in custom output:**
 ```bash
-go run MFT2SQL.go -carve -fileOffset  28721337472  -fileLength  131004 -dumpFile SAMFile.txt
+$ go run MFT2SQL.go -carve -fileOffset  28721337472  -fileLength  131004 -dumpFile SAMFile.txt
+[+] Carving file from disk...
+[+] Dumping file with offset:  28721337472  length:  131004  into file:  SAMFile.txt
 ```
 
 ## 📜 License
