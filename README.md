@@ -27,12 +27,23 @@ This indexes all MFT entries and recursively resolves their full paths. ⏱️ I
 - 🧬 Supports direct file carving using metadata from MFT
 - 🗃️ Enables SQL-indexed lookup for flexibility
 
+| **Flag**           | **Description**                                                            |
+|--------------------|----------------------------------------------------------------------------|
+| `-carve`           | Carve a file from disk. Requires `-fileOffset` and `-fileLength`.         |
+| `-dbFile string`   | SQLite DB name (default `"MFTDB.db"`).                                    |
+| `-deviceLocation`  | Disk source to scan (default `"\\\\.\\physicaldrive0"`).                  |
+| `-dumpFile string` | Output filename for carved data (default `"output.dump"`).                |
+| `-dumpMode int`    | MFT dump output: `1=screen`, `2=SQL`.                                     |
+| `-fileLength int`  | Length of the file to carve (in bytes).                                   |
+| `-fileOffset int`  | Disk offset to start carving from (in bytes).                             |
+| `-getFileLocation` | Lookup file offset and length by full NTFS path.                          |
+| `-help`            | Show help and usage banner.                                                |
 
 ---
 
 ## 🧉 Buy Me a Coffee
 
-If this tool saved you hours of scripting or made your investigation easier, or got you valuable credentials during a penetration test — feel free to support me:
+If this tool saved you hours of scripting or made your investigation easier, or got you valuable credentials during a penetration test — feel free to buy me a coffee:
 
 👉 [https://buymeacoffee.com/jeroens](https://buymeacoffee.com/jeroens)
 
@@ -42,17 +53,17 @@ Much appreciated! 🧠☕
 
 ## 🧪 Example Commands
 
-** Dump MFT to a custom database output file: **
+**Dump MFT to a custom database output file:**
 ```bash
 go run MFT2SQL.go -dbFile custom.db -dumpMode 2
 ```
 
-** Fetch location data of a file: **
+**Fetch location data of a file:**
 ```bash
 go run MFT2SQL.go -dbFile custom.db -getFileLocation Windows\System32\config\SAM
 ```
 
-** Carve file (SAM file in this case) and store it in custom output: **
+**Carve file (SAM file in this case) and store it in custom output:**
 ```bash
 go run MFT2SQL.go -carve -fileOffset  28721337472  -fileLength  131004 -dumpFile SAMFile.txt
 ```
