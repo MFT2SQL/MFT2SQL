@@ -75,14 +75,15 @@ $ go run MFT2SQL.go -dbFile custom.db -dumpMode 2
   --> Found 13 MFT Blocks
 
 [.] Committed batch of 10000 records. Total inserted: 10000
-..
+...
 [.] Committed batch of 10000 records. Total inserted: 2170000
 [.] Committed batch of 7990 records. Total inserted: 2177990
   --> Found 2178016 files in the $MFT records[+] Building full paths for all entries...
 [+] Updated 100000 fullpaths...
-```
+...
 [+] Updated 1700000 fullpaths...
 [+] Fullpaths updated for 1777761 records.
+```
 
 **Fetch location data of a file:**
 ```bash
