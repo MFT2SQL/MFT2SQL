@@ -6,6 +6,7 @@ The MFT itself is a structured, block-based system that functions like a paged m
 
 > 🔒 **Administrator privileges are required** for accessing low-level disk interfaces such as `\\.\physicaldrive0`.
 
+This tool has been tested on Windows 10 withouth bitlocker enabled. To see if your system has bitlocker enabled run: manage-bde -status
 ---
 
 ## ⚙️ Setup & First Run
